@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="jumbotron bg-primary text-white text-left">
+    <h3>{{session["username"]}}'s profile</h3>
+    <large>You can see your articles below.</large>
+</div>
+
+    {% if articles %}
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+        <tr>
+            <td><a href="/article/{{article.id}}">{{article.title}}</a></td>
+            <td>{{article.created_date}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% else %}
+    <div class = "alert alert-warning">You have not an article yet...</div>
+
+{% endif %}
+
+{% endblock %}
